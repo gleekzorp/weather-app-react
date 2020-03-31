@@ -1,22 +1,19 @@
-import React, { createContext, useReducer, useState } from 'react';
-// import { weatherReducer } from '../reducers/WeatherReducers';
+import React, { createContext, useState } from 'react';
 
 export const WeatherContext = createContext()
 
 const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
 const state = {
-    zip: '',
     cityName: '',
-    day: '',
     weatherDescription: '',
     temp: '',
+    day: '',
     weatherIcon: '',
     forecast: []
 }
 
 const WeatherContextProvider = (props) => {
-    // const [weather, dispatch] = useReducer(weatherReducer, state)
     const [weather, setWeather] = useState(state)
 
     const getCurrentWeather = (zip) => {
@@ -24,7 +21,14 @@ const WeatherContextProvider = (props) => {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            setWeather()
+            setWeather({
+                ...weather,
+                cityName: data.name,
+                temp: data.main.temp,
+                day: new Date().toDateString(),
+                weatherDescription: data.weather[0].description,
+                weatherIcon: data.weather[0].icon
+            })
         })
         .catch(err => {
             console.log('There was an error fetching the weather api,', err)
