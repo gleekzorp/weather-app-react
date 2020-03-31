@@ -8,6 +8,7 @@ const WeatherForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         getCurrentWeather(zip)
+        setZip('')
     }
     return (
         <form onSubmit={handleSubmit}>

@@ -35,7 +35,7 @@ const WeatherContextProvider = (props) => {
         })
     }
     return (
-        <WeatherContext.Provider value={{weather, getCurrentWeather: getCurrentWeather}}>
+        <WeatherContext.Provider value={{...weather, getCurrentWeather: getCurrentWeather}}>
             {props.children}
         </WeatherContext.Provider>
     );
