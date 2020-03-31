@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
+import { weatherReducer } from '../reducers/WeatherReducers';
 
 export const WeatherContext = createContext()
 
