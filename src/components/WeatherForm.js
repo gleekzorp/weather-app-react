@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { WeatherContext } from '../contexts/WeatherContext';
 
 const WeatherForm = () => {
+    const { getCurrentWeather } = useContext(WeatherContext)
     const [zip, setZip] = useState('')
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(zip)
+        getCurrentWeather(zip)
     }
     return (
         <form onSubmit={handleSubmit}>
