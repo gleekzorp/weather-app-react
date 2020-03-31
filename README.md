@@ -1,5 +1,7 @@
 # Weather App
 
+// Turn temp into int when we want to do math
+
 > Components
 - WeatherForm
   - input zip
@@ -27,6 +29,7 @@
     - Weather Description
     - Temp
     - Weather Icon
+    - forecast
 - actions
   - WeatherActions
 - reducers
