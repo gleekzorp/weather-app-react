@@ -2,6 +2,7 @@ import React from 'react';
 import WeatherContextProvider from './contexts/WeatherContext';
 import WeatherForm from './components/WeatherForm';
 import CurrentWeather from './components/CurrentWeather';
+import FiveDayForecast from './components/fiveday/FiveDayForecast';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <WeatherContextProvider>
         <WeatherForm />
         <CurrentWeather />
+        <FiveDayForecast />
       </WeatherContextProvider>
     </div>
   );

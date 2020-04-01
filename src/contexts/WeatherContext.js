@@ -10,11 +10,11 @@ const state = {
     temp: '',
     day: '',
     weatherIcon: '',
-    forecast: []
 }
 
 const WeatherContextProvider = (props) => {
     const [weather, setWeather] = useState(state)
+    const [forecast, setForecast] = useState([])
 
     const getCurrentWeather = (zip) => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}`)
@@ -31,11 +31,23 @@ const WeatherContextProvider = (props) => {
             })
         })
         .catch(err => {
-            console.log('There was an error fetching the weather api,', err)
+            console.log('There was an error fetching the current weather api,', err)
+        })
+    }
+
+    const getForecast = (zip) => {
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?zip=${zip}&appid=${apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setForecast(data.list)
+        })
+        .catch(err => {
+            console.log('There was an error fetching the forecast api,', err)
         })
     }
     return (
-        <WeatherContext.Provider value={{...weather, getCurrentWeather: getCurrentWeather}}>
+        <WeatherContext.Provider value={{...weather, forecast, getCurrentWeather: getCurrentWeather, getForecast: getForecast}}>
             {props.children}
         </WeatherContext.Provider>
     );
